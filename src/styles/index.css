@@ -1,0 +1,24 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.gameboard__controls {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: white;
+    top: 100px;
+    right: 100px;
+    z-index: 10;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
