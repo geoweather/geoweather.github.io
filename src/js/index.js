@@ -29,13 +29,18 @@ const updatePano = () => {
 const initialize = () => {
   sv = new google.maps.StreetViewService();
   panoramaElem = new google.maps.StreetViewPanorama(document.getElementById('gameboard__pano'), {
-    addressControl: false,
-    linksControl: false,
-    panControl: false,
-    enableCloseButton: false,
+    disableDefaultUI: true,
   });
-
-  updatePano();
 };
 
+window.updatePano = updatePano;
 window.initialize = initialize;
+
+const homePage = document.getElementById('home');
+const gameboardPage = document.getElementById('gameboard');
+
+document.getElementById('home__start-btn').addEventListener('click', () => {
+  homePage.classList.remove('home--opened');
+  gameboardPage.classList.add('gameboard--opened');
+  updatePano();
+});

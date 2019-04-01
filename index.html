@@ -4,12 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
+    <style>
+        /* css code built by webpack isn't working :( */
+        .home {
+            display: none;
+            background: url(public/home-bg.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .home--opened {
+            display: flex;
+        }
+
+        .home__header {
+            margin-top: 0;
+            color: white;
+            padding-top: 100px;
+            font-size: 85px;
+            text-align: center;
+        }
+
+        .home__start-btn {
+            height: 100px;
+            width: 200px;
+            font-size: 40px;
+            margin-top: 50px;
+        }
+
+        @-webkit-keyframes rotating {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotating {
+            animation: rotating 3s linear infinite;
+        }
+
+        .gameboard {
+            display: none;
+        }
+
+        .gameboard--opened {
+            display: block;
+        }
+
+        .gameboard__pano {
+            width: 100vw; height: 100vh;
+        }
+
+        .gameboard__controls {
+            position: absolute;
+            height: 300px;
+            width: 200px;
+            background: #F5F5F5;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            border-radius: 2px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .gameboard__guess-btn {
+
+        }
+
+        .gameboard__guess-btn--1 {
+            background: #E53935;
+        }
+
+        .gameboard__guess-btn--2 {
+            background: #F44336;
+        }
+
+        .gameboard__guess-btn--3 {
+            background: #EF5350;
+        }
+
+        .gameboard__guess-btn--4 {
+            background: #E57373;
+        }
+
+        .gameboard__guess-btn--5 {
+            background: #EF9A9A;
+        }
+
+        .gameboard__guess-btn--6 {
+            background: #FFCDD2;
+        }
+
+        .gameboard__guess-btn--7 {
+            background: #BBDEFB;
+        }
+
+        .gameboard__guess-btn--8 {
+            background: #90CAF9;
+        }
+
+        .gameboard__guess-btn--9 {
+            background: #64B5F6;
+        }
+
+        .gameboard__guess-btn--10 {
+            background: #42A5F5;
+        }
+
+        .gameboard__guess-btn--11 {
+            background: #2196F3;
+        }
+
+        .gameboard__guess-btn--12 {
+            background: #1E88E5;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="gameboard">
-        <div id="gameboard__pano" class="gameboard__pano" style="width: 100vw; height: 100vh"></div>
-        <div class="gameboard__controls"></div>
+    <div id="home" class="home home--opened">
+        <h1 class="home__header">Funny Assignment</h1>
+        <button id="home__start-btn" class="home__start-btn rotating">Play</button>
+    </div>
+
+    <div id="gameboard" class="gameboard">
+        <div id="gameboard__pano" class="gameboard__pano"></div>
+        <div class="gameboard__controls">
+            <p>What's the temperature there?</p>
+            <button class="gameboard__guess-btn gameboard__guess-btn--1">from 21°C to 999°C :)</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--2">from 21°C to 25°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--3">from 16°C to 20°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--4">from 11°C to 15°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--5">from 6°C to 10°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--6">from 0°C to 5°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--7">from -1°C to -5°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--8">from -6°C to -10°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--9">from -11°C to -15°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--10">from -16°C to -20°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--11">from -21°C to -25°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--12">from -26°C to -999°C :)</button>
+        </div>
     </div>
 
     <script src="bundle.js"></script>
