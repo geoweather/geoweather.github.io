@@ -10,3 +10,163 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.home {
+    display: none;
+    /* Didn't optimize the image. Sorry :( */
+    background: url(../../public/home-bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home--opened {
+    display: flex;
+}
+
+.home__header {
+    margin-top: 0;
+    color: white;
+    padding-top: 100px;
+    font-size: 85px;
+    text-align: center;
+}
+
+.home__start-btn {
+    height: 100px;
+    width: 200px;
+    font-size: 40px;
+    margin-top: 50px;
+}
+
+.good-job-badge,
+.bad-job-badge {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: -200px;
+}
+
+@-webkit-keyframes feedback-badge-movement {
+    from{
+        top: 200px;
+        right: -200px;
+        z-index: 10;
+    }
+    to{
+        top: 200px;
+        right: 100vw;
+        z-index: 10;
+    }
+}
+
+.good-job-badge--moving,
+.bad-job-badge--moving {
+    animation: feedback-badge-movement 2s linear;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    animation: rotating 3s linear infinite;
+}
+
+.gameboard {
+    display: none;
+}
+
+.gameboard--opened {
+    display: block;
+}
+
+.gameboard__pano {
+    width: 100vw; height: 100vh;
+}
+
+.gameboard__controls {
+    padding: 0 15px 0;
+    position: absolute;
+    width: 250px;
+    background: #F5F5F5;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    pointer-events: none;
+}
+
+.gameboard__controls--active {
+    pointer-events: auto;
+}
+
+.gameboard__guess-btn {
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.gameboard__guess-btn--1 {
+    background: #E53935;
+}
+
+.gameboard__guess-btn--2 {
+    background: #F44336;
+}
+
+.gameboard__guess-btn--3 {
+    background: #EF5350;
+}
+
+.gameboard__guess-btn--4 {
+    background: #E57373;
+}
+
+.gameboard__guess-btn--5 {
+    background: #EF9A9A;
+}
+
+.gameboard__guess-btn--6 {
+    background: #FFCDD2;
+}
+
+.gameboard__guess-btn--7 {
+    background: #BBDEFB;
+}
+
+.gameboard__guess-btn--8 {
+    background: #90CAF9;
+}
+
+.gameboard__guess-btn--9 {
+    background: #64B5F6;
+}
+
+.gameboard__guess-btn--10 {
+    background: #42A5F5;
+}
+
+.gameboard__guess-btn--11 {
+    background: #2196F3;
+}
+
+.gameboard__guess-btn--12 {
+    background: #1E88E5;
+}
+
+.gameboard__countdown {
+    font-size: 65px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
