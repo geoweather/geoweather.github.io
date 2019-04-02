@@ -31,13 +31,10 @@ const possibleLocations = [
   { lat: -26.201, lng: 28.045 },
   { lat: -4.325, lng: 15.322 },
   { lat: -33.867, lng: 151.207 },
-  { lat: -25.363, lng: 131.044 },
   { lat: -25.363882, lng: 131.044922 },
   { lat: -33.871, lng: 151.197 },
   { lat: 40.729884, lng: -73.990988 },
   { lat: 40.730031, lng: -73.991428 },
-  { lat: 40.729681, lng: -73.991138 },
-  { lat: 40.729559, lng: -73.990741 },
 ];
 
 // Basic set up after google maps API is ready
@@ -58,12 +55,14 @@ const updatePano = () => {
   sv.getPanorama({ location, radius: 5000, source: 'outdoor' }, (data, status) => {
     // If found a photo set it up. If not search again
     if (status === 'OK') {
+      if (state.pano === data.location.pano) return updatePano();
       panoramaElem.setPano(data.location.pano);
       panoramaElem.setPov({
         heading: 270,
         pitch: 0,
       });
       panoramaElem.setVisible(true);
+      state.pano = data.location.pano;
 
       // Enable temperature buttons
       gameboardControls.classList.add('gameboard__controls--active');
