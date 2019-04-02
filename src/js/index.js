@@ -5,6 +5,7 @@ const state = {
   countdownInterval: null,
   weatherAPIToken: '44fbf3cfb0839a699c0b9d84be12a46e',
   weatherAPIURL: 'https://api.openweathermap.org/data/2.5/weather',
+  currentStrike: 0,
 };
 
 let sv;
@@ -16,6 +17,7 @@ const goodJobBadge = document.querySelector('#good-job-badge');
 const badJobBadge = document.querySelector('#bad-job-badge');
 const homePage = document.getElementById('home');
 const gameboardPage = document.getElementById('gameboard');
+const currentStrikeElem = document.getElementById('current-strike-number');
 
 const possibleLocations = [
   { lat: 57.149651, lng: -2.099075 },
@@ -72,7 +74,15 @@ const updatePano = () => {
       state.countdownInterval = setInterval(() => {
         timeLeft -= 1;
         countdownElem.innerHTML = timeLeft;
-        if (timeLeft <= 0) clearInterval(state.countdownInterval);
+        if (timeLeft <= 0) {
+          gameboardControls.classList.remove('gameboard__controls--active');
+          clearInterval(state.countdownInterval);
+          badJobBadge.classList.add('bad-job-badge--moving');
+          setTimeout(() => badJobBadge.classList.remove('bad-job-badge--moving'), 2000);
+          state.currentStrike = 0;
+          currentStrikeElem.innerText = state.currentStrike;
+          updatePano();
+        }
       }, state.timeUnit);
     } else {
       updatePano();
@@ -107,11 +117,14 @@ document.getElementById('home__start-btn').addEventListener('click', () => {
           // Show great badge
           goodJobBadge.classList.add('good-job-badge--moving');
           setTimeout(() => goodJobBadge.classList.remove('good-job-badge--moving'), 2000);
+          state.currentStrike += 1;
         } else {
           // Show awful badge
           badJobBadge.classList.add('bad-job-badge--moving');
           setTimeout(() => badJobBadge.classList.remove('bad-job-badge--moving'), 2000);
+          state.currentStrike = 0;
         }
+        currentStrikeElem.innerText = state.currentStrike;
 
         // Stare new round
         setTimeout(updatePano, 1800);
