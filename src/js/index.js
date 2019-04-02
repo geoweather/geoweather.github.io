@@ -18,6 +18,7 @@ const badJobBadge = document.querySelector('#bad-job-badge');
 const homePage = document.getElementById('home');
 const gameboardPage = document.getElementById('gameboard');
 const currentStrikeElem = document.getElementById('current-strike-number');
+const bestScoreElem = document.getElementById('best-score-number');
 
 const possibleLocations = [
   { lat: 57.149651, lng: -2.099075 },
@@ -38,6 +39,9 @@ const possibleLocations = [
   { lat: 40.729884, lng: -73.990988 },
   { lat: 40.730031, lng: -73.991428 },
 ];
+
+// Get best score from localstorage and set it up in UI
+bestScoreElem.innerText = localStorage.getItem('bestScore') || 0;
 
 // Basic set up after google maps API is ready
 window.initialize = () => {
@@ -79,6 +83,10 @@ const updatePano = () => {
           clearInterval(state.countdownInterval);
           badJobBadge.classList.add('bad-job-badge--moving');
           setTimeout(() => badJobBadge.classList.remove('bad-job-badge--moving'), 2000);
+          if (state.currentStrike > +localStorage.getItem('bestScore')) {
+            localStorage.setItem('bestScore', state.currentStrike);
+            bestScoreElem.innerText = state.currentStrike;
+          }
           state.currentStrike = 0;
           currentStrikeElem.innerText = state.currentStrike;
           updatePano();
@@ -122,6 +130,10 @@ document.getElementById('home__start-btn').addEventListener('click', () => {
           // Show awful badge
           badJobBadge.classList.add('bad-job-badge--moving');
           setTimeout(() => badJobBadge.classList.remove('bad-job-badge--moving'), 2000);
+          if (state.currentStrike > +localStorage.getItem('bestScore')) {
+            localStorage.setItem('bestScore', state.currentStrike);
+            bestScoreElem.innerText = state.currentStrike;
+          }
           state.currentStrike = 0;
         }
         currentStrikeElem.innerText = state.currentStrike;
