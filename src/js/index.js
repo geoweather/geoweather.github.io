@@ -115,7 +115,7 @@ document.getElementById('home__start-btn').addEventListener('click', () => {
         }
 
         // Stare new round
-        updatePano();
+        setTimeout(updatePano, 1800);
       });
   });
 });
