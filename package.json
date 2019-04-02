@@ -1,5 +1,5 @@
 {
-  "name": "funny-assignment",
+  "name": "geo-weather",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,12 +11,10 @@
   "author": "Taras Mazurkevych",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "script-loader": "^0.7.2",
-    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
