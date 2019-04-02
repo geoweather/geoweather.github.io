@@ -8,6 +8,7 @@
         /* css code built by webpack isn't working :( */
         .home {
             display: none;
+            /* Didn't optimize the image. Sorry :( */
             background: url(public/home-bg.jpg) no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
@@ -32,6 +33,30 @@
             width: 200px;
             font-size: 40px;
             margin-top: 50px;
+        }
+
+        .good-job-badge,
+        .bad-job-badge {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            top: 200px;
+        }
+
+        @-webkit-keyframes feedback-badge-movement {
+            from{
+                right: -200px;
+                z-index: 10;
+            }
+            to{
+                right: 100vw;
+                z-index: 10;
+            }
+        }
+
+        .good-job-badge--moving,
+        .bad-job-badge--moving {
+            animation: feedback-badge-movement 2s linear;
         }
 
         @-webkit-keyframes rotating {
@@ -60,19 +85,28 @@
         }
 
         .gameboard__controls {
+            padding: 0 15px 0;
             position: absolute;
-            height: 300px;
-            width: 200px;
+            width: 250px;
             background: #F5F5F5;
             top: 20px;
             right: 20px;
             z-index: 10;
             border-radius: 2px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            pointer-events: none;
+        }
+
+        .gameboard__controls--active {
+            pointer-events: auto;
         }
 
         .gameboard__guess-btn {
-
+            border: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 2px;
         }
 
         .gameboard__guess-btn--1 {
@@ -122,33 +156,44 @@
         .gameboard__guess-btn--12 {
             background: #1E88E5;
         }
+
+        .gameboard__countdown {
+            font-size: 65px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <div id="home" class="home home--opened">
+    <div id="home" class="home">
         <h1 class="home__header">Funny Assignment</h1>
         <button id="home__start-btn" class="home__start-btn rotating">Play</button>
     </div>
 
-    <div id="gameboard" class="gameboard">
+    <div id="gameboard" class="gameboard gameboard--opened">
         <div id="gameboard__pano" class="gameboard__pano"></div>
-        <div class="gameboard__controls">
+        <div class="gameboard__controls" id="gameboard__controls">
             <p>What's the temperature there?</p>
-            <button class="gameboard__guess-btn gameboard__guess-btn--1">from 21°C to 999°C :)</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--2">from 21°C to 25°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--3">from 16°C to 20°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--4">from 11°C to 15°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--5">from 6°C to 10°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--6">from 0°C to 5°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--7">from -1°C to -5°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--8">from -6°C to -10°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--9">from -11°C to -15°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--10">from -16°C to -20°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--11">from -21°C to -25°C</button>
-            <button class="gameboard__guess-btn gameboard__guess-btn--12">from -26°C to -999°C :)</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--1" data-min="26" data-max="999">from 26°C to 999°C :)</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--2" data-min="21" data-max="25">from 21°C to 25°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--3" data-min="16" data-max="20">from 16°C to 20°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--4" data-min="11" data-max="15">from 11°C to 15°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--5" data-min="6" data-max="10">from 6°C to 10°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--6" data-min="0" data-max="5">from 0°C to 5°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--7" data-min="-5" data-max="-1">from -1°C to -5°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--8" data-min="-10" data-max="-6">from -6°C to -10°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--9" data-min="-15" data-max="-11">from -11°C to -15°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--10" data-min="-20" data-max="-16">from -16°C to -20°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--11" data-min="-25" data-max="-21">from -21°C to -25°C</button>
+            <button class="gameboard__guess-btn gameboard__guess-btn--12" data-min="-999" data-max="-26">from -26°C to -999°C :)</button>
+            <div id="gameboard__countdown" class="gameboard__countdown"></div>
         </div>
     </div>
+
+    <img src="public/good-job.gif" class="good-job-badge" id="good-job-badge" />
+    <img src="public/bad-job.png" class="bad-job-badge" id="bad-job-badge" />
 
     <script src="bundle.js"></script>
     <script async defer
