@@ -20,6 +20,24 @@ const gameboardPage = document.getElementById('gameboard');
 const possibleLocations = [
   { lat: 57.149651, lng: -2.099075 },
   { lat: 37.869260, lng: -122.254811 },
+  { lat: 42.345573, lng: -71.098326 },
+  { lat: -34.397, lng: 150.644 },
+  { lat: 41.850, lng: -87.650 },
+  { lat: 35.717, lng: 139.731 },
+  { lat: 30.064742, lng: 31.249509 },
+  { lat: 61.218, lng: -149.900 },
+  { lat: 19.427, lng: -99.127 },
+  { lat: 51.500, lng: -0.126 },
+  { lat: -26.201, lng: 28.045 },
+  { lat: -4.325, lng: 15.322 },
+  { lat: -33.867, lng: 151.207 },
+  { lat: -25.363, lng: 131.044 },
+  { lat: -25.363882, lng: 131.044922 },
+  { lat: -33.871, lng: 151.197 },
+  { lat: 40.729884, lng: -73.990988 },
+  { lat: 40.730031, lng: -73.991428 },
+  { lat: 40.729681, lng: -73.991138 },
+  { lat: 40.729559, lng: -73.990741 },
 ];
 
 // Basic set up after google maps API is ready
